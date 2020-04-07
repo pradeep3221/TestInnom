@@ -1,5 +1,3 @@
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using System.Net.Http;
 using System.Security.Claims;
 using TestInnom.Product.DataModels.Models;
 using TestInnom.Product.Manager;
@@ -26,7 +23,7 @@ namespace TestInnom.Product.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
+
             services.AddAuthentication("token")
                 .AddJwtBearer("token", options =>
                 {
