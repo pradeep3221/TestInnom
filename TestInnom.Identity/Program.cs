@@ -9,7 +9,7 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 
-namespace Vegge.Identity
+namespace TestInnom.Identity
 {
     public class Program
     {
@@ -34,7 +34,7 @@ namespace Vegge.Identity
             try
             {
                 var host = CreateHostBuilder(args).Build();
-                
+
                 Log.Information("Starting host...");
                 host.Run();
                 return 0;
@@ -52,11 +52,12 @@ namespace Vegge.Identity
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseSerilog();
                     webBuilder.ConfigureKestrel(options => options.AllowSynchronousIO = true);
                 });
+
     }
 }

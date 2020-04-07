@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
-namespace Vegge.Identity.Data.Seed
+namespace TestInnom.Identity.Data.Seed
 {
 
     public static class Config
@@ -32,40 +28,41 @@ namespace Vegge.Identity.Data.Seed
         {
             return new List<Client>
             {
-                new Client
-                {
-                    ClientId = "client",
+                //new Client
+                //{
+                //    ClientId = "client",
 
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                //    // no interactive user, use the clientid/secret for authentication
+                //    AllowedGrantTypes = GrantTypes.ClientCredentials,
 
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
+                //    // secret for authentication
+                //    ClientSecrets =
+                //    {
+                //        new Secret("secret".Sha256())
+                //    },
 
-                    // scopes that client has access to
-                    AllowedScopes = { "web_api" }
-                },
-                // resource owner password grant client
-                new Client
-                {
-                    ClientId = "ro.client",
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                //    // scopes that client has access to
+                //    AllowedScopes = { "web_api" }
+                //},
+                //// resource owner password grant client
+                //new Client
+                //{
+                //    ClientId = "ro.client",
+                //    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "web_api" }
-                },
+                //    ClientSecrets =
+                //    {
+                //        new Secret("secret".Sha256())
+                //    },
+                //    AllowedScopes = { "web_api" }
+                //},
                 // OpenID Connect hybrid flow client (MVC)
                 new Client
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.Hybrid,
+                    ClientUri = "http://localhost:5002/",
 
                     ClientSecrets =
                     {
@@ -79,31 +76,43 @@ namespace Vegge.Identity.Data.Seed
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
                         "web_api"
                     },
 
                     AllowOfflineAccess = true
                 },
                 // JavaScript Client
-                new Client
-                {
-                    ClientId = "js",
-                    ClientName = "JavaScript Client",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    RequireClientSecret = false,
+                //new Client
+                //{
+                //    ClientId = "js",
+                //    ClientName = "JavaScript Client",
+                //    AllowedGrantTypes = GrantTypes.Code,
+                //    RequirePkce = true,
+                //    RequireClientSecret = false,
 
-                    RedirectUris =           { "http://localhost:5003/callback.html" },
-                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
-                    AllowedCorsOrigins =     { "http://localhost:5003" },
+                //    RedirectUris =           { "http://localhost:5003/callback.html" },
+                //    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                //    AllowedCorsOrigins =     { "http://localhost:5003" },
 
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "web_api"
-                    }
-                }
+                //    AllowedScopes =
+                //    {
+                //        IdentityServerConstants.StandardScopes.OpenId,
+                //        IdentityServerConstants.StandardScopes.Profile,
+                //        "web_api"
+                //    }
+                //},
+                 new Client {
+                     ClientId = "angular_spa",
+                     ClientName = "Angular SPA",
+                     AllowedGrantTypes = GrantTypes.Implicit,
+                     AllowedScopes = { "openid", "profile", "email", "api.read" },
+                     RedirectUris = {"http://localhost:4200/auth-callback"},
+                     PostLogoutRedirectUris = {"http://localhost:4200/"},
+                     AllowedCorsOrigins = {"http://localhost:4200"},
+                     AllowAccessTokensViaBrowser = true,
+                     AccessTokenLifetime = 3600
+                  }
             };
         }
     }

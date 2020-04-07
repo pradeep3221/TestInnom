@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page - Admin View";
+}
+
+<h1>@ViewData["Title"]</h1>
+@using NonFactors.Mvc.Grid;
+
+@model IQueryable<Product>
+<div class="text-center">
+    @*<h1 class="display-4">Welcome</h1>*@
+    @(Html
+            .Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.ProductId).Titled("ID");//.Sortable(true).UsingDefaultFilterMethod("equals");
+                columns.Add(model => model.Name).Titled("Name");//.Sortable(false).Filterable(GridFilterCase.Lower);
+                columns.Add(model => model.Color).Titled("Color");//.Sortable(false).Filterable(GridFilterCase.Lower);
+
+                columns.Add(model => model.Size).Titled("Size");//.Sortable(false);
+                columns.Add(model => model.Price).Titled("Price");//.Sortable(true);
+                columns.Add(model => model.Quantity).Titled("Quantity");//.Sortable(true);
+
+                //columns.Add(model => $"<a class=\"btn btn-success\" href=\"#\" data-id=\"{model.ProductId}\"><i class=\"fal fa-edit\"></i>Edit</a>").Encoded(false);
+                columns.Add(model => $"<button class=\"btn btn-success\" data-id=\"{model.ProductId}\">Edit</button>").Encoded(false);
+                //columns.Add(model => $"<a class=\"btn btn-danger\" href=\"#\" data-id=\"{model.ProductId}\">  <i class=\"far fa-trash-alt\"></i> Delete</a>").Encoded(false);
+                columns.Add(model => $"<button class=\"btn btn-danger\"  data-id=\"{model.ProductId}\">Delete</button>").Encoded(false);
+            })
+            .Using(GridFilterMode.Header)
+            .Empty("No data found")
+            .Filterable()
+            .Sortable()
+            .Pageable(pager =>
+            {
+                pager.PageSizes = new Dictionary<Int32, String>
+                { { 0, "All" }, { 5, "5" }, { 10, "10" } };
+                pager.ShowPageSizes = true;
+                pager.PagesToDisplay = 3;
+                pager.CurrentPage = 1;
+                pager.RowsPerPage = 5;
+            })
+        )
+</div>

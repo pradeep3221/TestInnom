@@ -1735,7 +1735,7 @@
 <li>Delete any ASP.NET Core Identity migrations, AdminUI must be in charge of the user store migrations</li>
 </ol>
 <p>Your ASP.NET Core DI registrations should now look something like the following:</p>
-<pre><code class="language-csharp">services.AddDbContext&lt;IdentityExpressDbContext&gt;(options =&gt; options.UseSqlServer(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
+<pre><code class="language-csharp">services.AddDbContext&lt;IdentityExpressDbContext&gt;(options =&gt; options.UseSqlite(Configuration.GetConnectionString(&quot;DefaultConnection&quot;)));
 services.AddIdentity&lt;IdentityExpressUser, IdentityExpressRole&gt;()
     .AddUserStore&lt;IdentityExpressUserStore&gt;()
     .AddRoleStore&lt;IdentityExpressRoleStore&gt;()

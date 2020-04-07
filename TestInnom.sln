@@ -9,17 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductMicroservice", "Prod
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityMicroservice", "IdentityMicroservice", "{C8326FF0-6025-4428-B389-96B255AE7E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInnom.Product.API", "TestInnom.Product.API\TestInnom.Product.API.csproj", "{FD3630E1-19F2-4CCD-ADA2-91A9C0F6B26B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.Product.API", "TestInnom.Product.API\TestInnom.Product.API.csproj", "{FD3630E1-19F2-4CCD-ADA2-91A9C0F6B26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInnom.Product.Manager", "TestInnom.Product.Manager\TestInnom.Product.Manager.csproj", "{A57FAC44-59FF-43D1-8DF5-445B80ECED72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.Product.Manager", "TestInnom.Product.Manager\TestInnom.Product.Manager.csproj", "{A57FAC44-59FF-43D1-8DF5-445B80ECED72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInnom.Product.DataAccess", "TestInnom.Product.DataAccess\TestInnom.Product.DataAccess.csproj", "{F1A26D65-3DC3-4F46-B770-555F960AAE5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.Product.DataAccess", "TestInnom.Product.DataAccess\TestInnom.Product.DataAccess.csproj", "{F1A26D65-3DC3-4F46-B770-555F960AAE5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInnom.Product.DataModels", "TestInnom.Product.DataModels\TestInnom.Product.DataModels.csproj", "{10AAA994-0474-48A8-9766-E38885A0ABC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.Product.DataModels", "TestInnom.Product.DataModels\TestInnom.Product.DataModels.csproj", "{10AAA994-0474-48A8-9766-E38885A0ABC2}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestInnom.Database", "TestInnom.Database\TestInnom.Database.sqlproj", "{E2FC8C98-0CC9-46A3-9F3E-2CCF4FA4F4B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vegge.Identity", "TestInnom.Identity\Vegge.Identity.csproj", "{3D717E2D-D400-4EA7-B98C-FD13DAD3C6AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.Identity", "TestInnom.Identity\TestInnom.Identity.csproj", "{3D717E2D-D400-4EA7-B98C-FD13DAD3C6AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularUI", "AngularUI\AngularUI.csproj", "{91092D7B-D6AA-4A00-95ED-CCF18AD04E62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestInnom.MVC", "TestInnom.MVC\TestInnom.MVC.csproj", "{D3D0443D-E1D2-4C3F-81A0-0A7D2A84BFC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,14 @@ Global
 		{3D717E2D-D400-4EA7-B98C-FD13DAD3C6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D717E2D-D400-4EA7-B98C-FD13DAD3C6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D717E2D-D400-4EA7-B98C-FD13DAD3C6AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91092D7B-D6AA-4A00-95ED-CCF18AD04E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91092D7B-D6AA-4A00-95ED-CCF18AD04E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91092D7B-D6AA-4A00-95ED-CCF18AD04E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91092D7B-D6AA-4A00-95ED-CCF18AD04E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D0443D-E1D2-4C3F-81A0-0A7D2A84BFC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D0443D-E1D2-4C3F-81A0-0A7D2A84BFC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D0443D-E1D2-4C3F-81A0-0A7D2A84BFC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D0443D-E1D2-4C3F-81A0-0A7D2A84BFC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

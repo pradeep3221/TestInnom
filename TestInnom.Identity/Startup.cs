@@ -1,13 +1,7 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
-using IdentityExpress.Identity;
-using IdentityExpress.Manager.Api;
-using IdentityServer4;
+﻿using IdentityServer4;
 using IdentityServer4.Configuration;
-using Vegge.Identity.Data;
-using Vegge.Identity.Models;
+using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,25 +9,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 using Microsoft.OpenApi.Models;
 using System;
-using IdentityServer4.EntityFramework.DbContexts;
 using System.Linq;
-using Vegge.Identity.Data.Seed;
-using IdentityServer4.EntityFramework.Mappers;
+using System.Reflection;
+using TestInnom.Identity.Data;
+using TestInnom.Identity.Data.Seed;
+using TestInnom.Identity.Models;
 
-namespace Vegge.Identity
+namespace TestInnom.Identity
 {
     public class Startup
     {
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
+        //public ILogger Logger { get; }
 
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Configuration = configuration;
             Environment = environment;
+            //Logger = logger;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -54,11 +50,11 @@ namespace Vegge.Identity
                 iis.AutomaticAuthentication = false;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Users")));
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("Users")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             var connectionString = Configuration.GetConnectionString("Configuration");
@@ -78,22 +74,23 @@ namespace Vegge.Identity
                         LoginReturnUrlParameter = "returnUrl"
                     };
                 })
+   
                 .AddAspNetIdentity<ApplicationUser>()
                 // this adds the config data from DB (clients, resources, CORS)
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = db =>
-                        db.UseSqlServer(connectionString,
+                        db.UseSqlite(connectionString,
                             sql => sql.MigrationsAssembly(migrationsAssembly));
-                    options.DefaultSchema = "IdSvr";
+                    // options.DefaultSchema = "IdSvr";
                 })
                 // this adds the operational data from DB (codes, tokens, consents)
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = db =>
-                        db.UseSqlServer(connectionString,
+                        db.UseSqlite(connectionString,
                             sql => sql.MigrationsAssembly(migrationsAssembly));
-                    options.DefaultSchema = "IdSvr";
+                    // options.DefaultSchema = "IdSvr";
                     // this enables automatic token cleanup. this is optional.
                     options.EnableTokenCleanup = true;
                     // options.TokenCleanupInterval = 15; // interval in seconds. 15 seconds useful for debugging
@@ -102,24 +99,15 @@ namespace Vegge.Identity
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to http://localhost:5000/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
-                });
-
             services.UseAdminUI();
-            services.AddScoped<IdentityExpressDbContext, SqliteIdentityDbContext>();
+            //services.AddScoped<IdentityExpressDbContext, SqlServerIdentityDbContext>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
+
         }
 
         public void Configure(IApplicationBuilder app)
@@ -161,6 +149,7 @@ namespace Vegge.Identity
             {
                 InitializeDatabase(app);
                 throw new Exception("Seeding completed. Disable the seed flag in appsettings");
+
             }
 
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
