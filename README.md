@@ -10,28 +10,28 @@ To develop simple Product management application (Business objectives, Backgroun
 #### Business Context using DDD
 
 # Application Details:
-## Architecture
+## Reference Architecture:
 ![](Img/microservicesImage.jpg)
 <br/> Image Source: - [docs.microsoft.com](https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
 
-## Technologies
-### prerequisites
+## Technologies:
+### prerequisites:
 1. Visual Studio 2019
 1. .Net Framework
     * .Net Core 3.0 SDK
     * .Net Core 3.1 SDK
  1. SQL Server 2019 Express 2019 or higher
-### Back-End
+### Back-End:
 1. .NET Core Web API
 1. API Documentation - Open API
     * Swagger + Swashbuckle
 1. Identity Server 4
 1. Entity Framework Core
-### Front-End
+### Front-End:
  1. .NET Core MVC
  1.  Angular9UI SPA - WIP or incomplete
 
-### Database - Polyglot persistance
+### Database - Polyglot persistance:
    1. *SQLite - Embedded RBDMS for Identity Microservices
    1. *MSSQL- RBMS as Trasaction DB for Product Microservice.
  
