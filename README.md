@@ -4,10 +4,11 @@
 
 # Requirements:
 To develop simple Product management application (Business objectives, Background, Scope, Features etc.
-#### Funtional Requerment specification (FRS/SRS)
-#### Non-Functional (QA) Requirement specification
-#### Architecture requirements specification
-#### Business Context using DDD
+<br/><br/>To-Do 
+* Funtional Requerment specification (FRS/SRS)
+* Non-Functional (QA) Requirement specification
+* Architecture requirements specification
+* Business Context using DDD
 
 # Application Details:
 ## Reference Architecture:
