@@ -50,7 +50,7 @@ To develop simple Product management application (Business objectives, Backgroun
 1. Goto MVC UI application (http://localhost:5002) which will be redirected to IDP's Login screen (Which uses Oauth 2.0  and OIDC implicit/Hybrid flow for Authentication/Authorization). you can use following users
     * user1/Password@123   -- Admin - can access all the pages
     * user1/Password@123   -- user - Cannot access the Claims page.
- 1. You can sceen the Dash board with Products Grid. Still need to implement the CRUD operation on the Product 
+ 1. You can sceen the Dash board with Products Grid. Still need to implement the CRUD operation on the Product, only grid load is only implemented for now.
 
 # URLs:
 ### MVC UI
