@@ -1,5 +1,5 @@
-# TestInnom
-**Innominds Test | .Net Architect | Simple Product managment**
+# Sample
+**Simple Product managment**
 .Net Core MVC & API applcation based on Microservices architecture style secured with IdentityServer4 as IDP.
 
 # Requirements:
